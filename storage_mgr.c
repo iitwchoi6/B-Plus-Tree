@@ -12,9 +12,8 @@ FILE *pageFile;
 
 extern void initStorageManager (void) {
 	printf("Initializing the storage manager\n");
-    printf("Made by:-\n");
-    printf("Maharsh Hetal Gheewala - A20442506\n");
-    printf("Nihar Darji - A20449275\n");
+    printf("Made by:\n");
+    printf("Nihar Darji\n");
 	pageFile = NULL;
 }
 
