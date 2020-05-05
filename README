@@ -11,9 +11,9 @@ Running the Code:
 
 1. Open the command prompt and direct towards the directory where the Makefile is located.
 2. Run the 'make' command. (The .o files get created along with an executable test_assign4_1.exe)
-3. To run, execute 'test_assign4_1.exe' by either double tap on the file or from the command line.
+3. To run, 'make run_test1'
 4. Create a make file for 'test_assign4_2.c' by running 'make test_assign4_2'. ((The .o files get created along with an executable test_assign4_2.exe)
-5. To run, execute 'test_assign4_2.exe' by either double tap on the file or from the command line.
+5. To run, 'make run_test2'
 
 
 ================================================
