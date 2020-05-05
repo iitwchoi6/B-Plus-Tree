@@ -1,0 +1,129 @@
+Assignment 4: B+-Tree Index: Implement a disk-based B+-tree index structure
+
+=======================================================
+PROCEDURE TO RUN THE CODE
+=======================================================
+
+Make File:
+The make file contains all the necessary commands to create the executable test_assign4_1.exe
+
+Running the Code:
+
+1. Open the command prompt and direct towards the directory where the Makefile is located.
+2. Run the 'make' command. (The .o files get created along with an executable test_assign4_1.exe)
+3. To run, execute 'test_assign4_1.exe' by either double tap on the file or from the command line.
+4. Create a make file for 'test_assign4_2.c' by running 'make test_assign4_2'. ((The .o files get created along with an executable test_assign4_2.exe)
+5. To run, execute 'test_assign4_2.exe' by either double tap on the file or from the command line.
+
+
+================================================
+INITIALIZE AND SHUTDOWN INDEX MANAGER
+================================================
+initIndexManager() : This function initializes the index manager and storage manager.
+
+shutdownIndexManager () : This function shut down's the index manager and free up all the space allocated to it.
+
+================================================
+B+ TREE FUNCTIONS
+================================================
+createBtree() : 
+- Creates a new B+ tree and initializes the buffer manager. It then creates buffer pool buffer manager and creates a page named "idxId" using storage manager. It also initializes Btree_mgr structure which is used to store data about B+ Tree.
+
+openBtree() : 
+- This function is used to open a B+ Tree which is stored in the file "idxId". It gets the Btree_mgr data and initializes buffer pool.
+
+closeBtree() : 
+- This function is used to close a B+ Tree and marks all the pages as dirty so that all the updated pages can be written back to the disk. It then shut downs buffer pool and free up all the allocated space using free() method.
+
+deleteBtree() : 
+- This method is used to delete a B+ Tree. It uses destroyPageFile() method to delete a file named "idxId". 
+
+=================================================
+ACCESS INFORMATION ABOUT B-TREE
+=================================================
+getNumNodes() : 
+- This method is used to get the number of nodes in a B+ Tree. An integer variable "result" is used to store the total number of nodes using no_of_nodes attribute of Btree_mgr structure
+
+getNumEntries() : 
+- This method is used to get the number of entries present in a B+ Tree. An integer variable "result" is used to store the total number of entries using no_of_entries attribute of Btree_mgr structure. 
+
+getKeyType() :
+- This method is used to get the datatype of the keys in a B+ Tree. An integer variable "result" is used to store the key datatypes using key_datatype attribute of Btree_mgr structure.
+
+==================================================
+INDEX ACCESS
+==================================================
+
+findKey() :
+- This method is used to find a particular key in the B+ Tree. The key value is searched using the function search_for_key(). If the specified key is found in the B+ Tree, the RID of that key is stored in "result" parameter. If the key specified is not found it will return RC_IM_KEY_NOT_FOUND error. 
+
+insertKey() :
+- This method is used to insert a new key into the B+ Tree. Initially it checks if the specified key already exists, and if it is already present in the tree it return error RC_ERROR. If the key is not present in the key a new record for the key to be inserted is created. 
+- It then checks if Root_node of B+ Tree is empty or not. If it is empty a new tree is created and the record is inserted into the key. If the Root_note is not empty then the leaf node of the already existing B+ Tree is identified using function search_for_leafNode().
+- If the identified leaf node has has space to accommodate the new key then we insert into this leaf node, else the leaf node is split using insertion_at_leaf_split() function and key is inserted.
+
+deleteKey() :
+- This method is used to delete a specified key from the B+ Tree. It deletes a particular record with specified key and pointer from the leaf node and makes all the appropriate changes to maintain B+ Tree properties. 
+
+openTreeScan() :
+- This method is used to initialize a scan operation which scans all the entries in the B+ Tree. It uses the structure Scan_info to scan the entries. Initially it checks if the root node of the tree is empty of not. if the tree is empty it return's RC_ERROR ,else it scans the B+ Tree.  
+
+nextEntry() :
+- This method is used to find the next entry in the B+ Tree. Initially it checks if the particular node is empty or not. If the node is empty it returns RC_IM_NO_MORE_ENTRIES, else it stores the RID's of the entries in memory location of the variable "result" specified in the parameter. 
+
+closeTreeScan() :
+- This method will close the tree scan operations and free up all the allocated resources. 
+
+printTree() :
+- This method is used to print the B+ Tree.
+
+==============================================
+ADDITIONAL FUNCTIONS USED
+==============================================
+Node * search_for_leafNode()
+Data * search_for_key()
+
+void insert_the_seq()
+Node * get_the_seq()
+int reaching_root()
+
+Node * node_creation()
+Node * leaf_creation()
+Node * insertion_at_leaf_split()
+Node * insertion_at_node_split()
+Node * insertion_parent()
+
+
+Node * root_changes()
+Node * node_merging()
+Node * distribution_of_keys()
+Node * keyDeletion()
+Node * delete_by_key()
+Node * nodeKey_deletion()
+int get_adjacent_node_info()
+
+bool lesserThan()
+bool greaterThan()
+bool equalTo()
+
+=======================
+Extra credit :
+=======================
+Added additional test cases to test_assign4_2.c to test additinal datatypes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
